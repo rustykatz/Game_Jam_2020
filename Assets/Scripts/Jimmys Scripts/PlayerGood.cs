@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerGood : MonoBehaviour
 {
 
     public float speed = 10f;
@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponenet<CharacterController>();
+        controller = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -43,7 +43,6 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && controller.isGrounded)
         {
-            an.SetTrigger("Jump");
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
     }
