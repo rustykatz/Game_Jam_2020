@@ -75,7 +75,7 @@ public class BasicEnemy : MonoBehaviour
             
             if(canAttack == true){
                 print("Damaging Player");
-                collision.gameObject.GetComponent<Player>().TakeDamage(dmg);
+                //collision.gameObject.GetComponent<Player>().TakeDamage(dmg);
                 canAttack = false;
            }
            

@@ -46,13 +46,20 @@ public class PlayerGood : MonoBehaviour
     public GameObject respawn; 
     Vector3 respawnOffset;
 
-
+    // test message
+    public string tm1;
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
+
+        // Starting Stats
+        health = 10;
+        maxHealth = health;
+        weaponLevel = 1;
+        damage = 1; 
 
     }
 
@@ -62,8 +69,15 @@ public class PlayerGood : MonoBehaviour
         Movement();
         Gravity();
         Look();
-        
+        UIupdate();
+        TestSendMsg(tm1);
        
+    }
+    void UIupdate(){
+        hpText.GetComponent<TextMeshProUGUI>().SetText("HP: " + health.ToString());
+        textBox2.GetComponent<TextMeshProUGUI>().SetText("WP Lvl: " + weaponLevel.ToString());
+        textBox3.GetComponent<TextMeshProUGUI>().SetText("DMG: " + damage.ToString());
+
     }
     void Look(){
         float mouseX = Input.GetAxis("Mouse X");
@@ -90,5 +104,12 @@ public class PlayerGood : MonoBehaviour
         controller.Move(move * speed * Time.deltaTime);
     }
 
-
+    void TestSendMsg(string message){
+        if(Input.GetKeyDown(KeyCode.M)){
+            Debug.Log("Sending Message to script -> Game Handler");
+            GameObject gh = GameObject.FindGameObjectWithTag("GameHandler");
+            gh.GetComponent<GameHandler>().GetMsg(message);
+        }
+        
+    }
 }
