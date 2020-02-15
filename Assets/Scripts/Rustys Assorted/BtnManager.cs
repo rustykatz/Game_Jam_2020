@@ -20,11 +20,6 @@ public class BtnManager : MonoBehaviour {
     }
 
 
-    //  Return to Main menu
-    public void ReturnMainBtn(string MainMenu){
-        Debug.Log("Loading Main Menu level.");
-        SceneManager.LoadScene(MainMenu);
-    }
 
 
     //  Exit application
