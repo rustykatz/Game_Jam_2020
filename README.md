@@ -1,4 +1,8 @@
-# Game_Jam_2020
+# Game Jam 2020
+
+
+## TEAM 
+Cam Savage, Jimmy Randa, Solomon Yu, Russell Wong
 
 | #  | DEPENDENCIES | VERSION | 
 | ------------- | -------- | ----|
