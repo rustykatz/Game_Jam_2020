@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player1 : MonoBehaviour
 {
     public float rotation;
     public float rotationY;
+    public float speed=2f; 
+
     public Vector3 velocity;
     public float gravity = -9.8f;
     public CharacterController controller;
-
+    float jumpHeight = 5f;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +28,7 @@ public class Player : MonoBehaviour
         rotationY = transform.Find("Main Camera").localEulerAngles.y;
         transform.Find("Main Camera").localEulerAngles = new Vector3(rotation, rotationY, 0);
 
-        Vector3 move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
+        Vector3 move = transform.right * Input.GetAxis("Horizontal")*speed + transform.forward * Input.GetAxis("Vertical")*speed;
         controller.Move(move * Time.deltaTime);
 
 
