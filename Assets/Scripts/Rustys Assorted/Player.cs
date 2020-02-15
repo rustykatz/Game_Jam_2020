@@ -13,8 +13,8 @@ public class Player : MonoBehaviour
     // Mouse Controller 
     private float mouseX;
     private float mouseY;
-    private float yawH = 100f;
-    private float pitchV = 100f;
+    private float yawH = 1000f;
+    private float pitchV = 1000f;
     public float speed = 5.0f;
     public float jumpForce = 5f;
     

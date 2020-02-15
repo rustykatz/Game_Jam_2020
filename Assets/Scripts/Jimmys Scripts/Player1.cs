@@ -6,11 +6,13 @@ public class Player1 : MonoBehaviour
 {
     public float rotation;
     public float rotationY;
+
+    public float speed=2f; 
+
     public Vector3 velocity;
     public float gravity = -9.8f;
     public CharacterController controller;
-    public float jumpHeight = 5f;
-
+    float jumpHeight = 5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,15 +22,17 @@ public class Player1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, Input.GetAxis("Mouse X"), 0);
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
 
-        rotation -= Input.GetAxis("Mouse Y");
-        rotationY = transform.Find("Main Camera").localEulerAngles.y;
-        transform.Find("Main Camera").localEulerAngles = new Vector3(rotation, rotationY, 0);
+        transform.Rotate(0, mouseX * sens, 0);
+        Camera.main.gameObject.transform.Rotate(-mouseY * sens,0,0);
 
-        Vector3 move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
-        controller.Move(move * Time.deltaTime);
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
 
+        move = new Vector3(x,0f,z);
+        controller.Move(move * speed * Time.deltaTime);
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
@@ -36,6 +40,7 @@ public class Player1 : MonoBehaviour
         {
             velocity.y = -2;
         }
+
         if (Input.GetButtonDown("Jump") && controller.isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
