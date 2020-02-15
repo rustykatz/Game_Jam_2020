@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player1 : MonoBehaviour
+public class Player : MonoBehaviour
 {
-    public float rotation;
-    public float rotationY;
 
-    public float speed=2f; 
-
+    public float speed = 10f;
+    public Vector3 move;
     public Vector3 velocity;
     public float gravity = -9.8f;
-    public CharacterController controller;
-    float jumpHeight = 5f;
+    public float sens = 5f;
+    CharacterController controller;
+    public float jumpHeight = 5f;
+
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponent<CharacterController>();
+        controller = GetComponenet<CharacterController>();
     }
 
     // Update is called once per frame
@@ -43,6 +43,7 @@ public class Player1 : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && controller.isGrounded)
         {
+            an.SetTrigger("Jump");
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
     }
