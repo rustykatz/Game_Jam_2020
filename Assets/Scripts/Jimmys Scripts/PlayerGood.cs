@@ -22,28 +22,36 @@ public class PlayerGood : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //-----------CAMERA-------------
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
 
         transform.Rotate(0, mouseX * sens, 0);
         Camera.main.gameObject.transform.Rotate(-mouseY * sens,0,0);
+        //-----------CAMERA-------------
 
+        //-----------WASD-------------
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
-
-        move = new Vector3(x,0f,z);
+        
+        move = transform.right * x + transform.forward * z;
         controller.Move(move * speed * Time.deltaTime);
+        //-----------WASD-------------
 
+        //-----------GRAVITY-------------
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
         if(controller.isGrounded && velocity.y < 0)
         {
             velocity.y = -2;
         }
+        //-----------GRAVITY-------------
 
+        //-----------JUMP-------------
         if (Input.GetButtonDown("Jump") && controller.isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
+        //-----------JUMP-------------
     }
 }
