@@ -13,6 +13,9 @@ public class Player1 : MonoBehaviour
     public float gravity = -9.8f;
     public CharacterController controller;
     float jumpHeight = 5f;
+    float sens =50f;
+
+    Vector3 move;
     // Start is called before the first frame update
     void Start()
     {
