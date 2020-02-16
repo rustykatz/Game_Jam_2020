@@ -17,29 +17,20 @@ public class EnemyHealth : MonoBehaviour {
 
 	void Awake(){
         totalHealth = health;
-        // print("Health: " + health.ToString());
-        // print("Total Health: " + totalHealth.ToString());
-      
-        gameHandler = GameObject.FindGameObjectWithTag("Game_Handler");
+        gameHandler = GameObject.FindGameObjectWithTag("GameHandler");
     }
 
     // Damage handling 
     public void TakeDamage(float damage)
     {
-        if(health > 0.01){
+        if(health > 0.1){
             health -= damage;
-            hperc = health/ totalHealth + 0.05f;
-            hp.SetSize(hperc);
+            if(health<=0){
+                OnDeath(points);
+                Destroy(gameObject);
+                //hp.SetSize(0);
+            }
         }
-        else
-        {
-            hp.SetSize(0);
-            OnDeath(points);
-            Destroy(gameObject);
-        }
-        
-        // print("Enemy HP: " + health.ToString()); 
-        
     }
 
     void OnDeath(int points){
