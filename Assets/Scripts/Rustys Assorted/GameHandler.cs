@@ -146,6 +146,38 @@ public class GameHandler : MonoBehaviour
     public void GetMsg(string _msg){
         msg = _msg;
     }
+     /*
+    EVENTS 
+    a) NEED To freeze game state until player moves
 
+    1) Difficulty
+        - Use Bool to freeze spawning, Difficulty factor 
+    2) Choose Player weapon 
+        - 4 choices
+        1) Buster
+        2) Excalibur
+        3) Plank
+        4) Scythe
+    3) Choose which Enemies to Spawn
+        1)
+        2)
+        3)
+        4) 
+    4) Choose Natural Disaster
+        1)
+        2)
+        3)
+        4)
+    5) Choose Enemies to Spawn 
+        1)
+        2)
+        3)
+        4)
+    6) Choose Boss
+        1)
+        2)
+        3)
+        4)
+    */
     
 }
