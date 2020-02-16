@@ -25,6 +25,7 @@ public class PlayerGood : MonoBehaviour
     public float maxHealth; 
     private float hperc;
     public TextMeshProUGUI hpText;
+    public HealthBarController healthBar;
 
     //
     public TextMeshProUGUI textBox2;
@@ -56,6 +57,18 @@ public class PlayerGood : MonoBehaviour
 
     Animator an;
 
+    public AudioSource aSource;
+    public AudioClip attack;
+    public AudioClip attack2;
+    public AudioClip die;
+    public AudioClip takedamage;
+    public AudioClip menuSong;
+    public AudioClip gameSong;
+    public AudioClip fireball;
+
+    public bool playingsong = false;
+    private bool m_isAxisInUse = false;
+    private bool x_isAxisInUse = false;
     // test message
     public string tm1;
 
@@ -63,6 +76,9 @@ public class PlayerGood : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        aSource = GetComponent<AudioSource>();
+        aSource.clip = menuSong;
+        aSource.Play();
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         an = GetComponent<Animator>();
@@ -76,6 +92,7 @@ public class PlayerGood : MonoBehaviour
         weapon_1= true;
         weapon_2 = false;
 
+        healthBar.setMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
@@ -139,6 +156,11 @@ public class PlayerGood : MonoBehaviour
         if(z != 0){
             an.SetTrigger("GoToIdle");
             an.SetBool("Running",true);
+            if (!playingsong){
+            aSource.clip = gameSong;
+            aSource.Play();
+                playingsong = true;
+            }
         }
         else
         {
@@ -157,16 +179,39 @@ public class PlayerGood : MonoBehaviour
 
 
     void Attack(){
-        if (Input.GetAxis("Fire1") > 0){
-            an.SetBool("Attack 0", true);
-            StartCoroutine("asd");
-            StartCoroutine("SwordAttacks");
+        if( Input.GetAxisRaw("Fire1") != 0)
+            {
+                if(m_isAxisInUse == false)
+                {
+                    // Call your event function here.
+                    an.SetBool("Attack 0", true);
+                    StartCoroutine("asd");
+                    StartCoroutine("SwordAttacks", attack);
+                    m_isAxisInUse = true;
+                }
+            }
+        if( Input.GetAxisRaw("Fire1") == 0)
+        {
+            m_isAxisInUse = false;
         }
-        if(Input.GetAxis("Fire2") > 0){
-            an.SetBool("AttackSlam", true);
-            StartCoroutine("asd");
-            StartCoroutine("SwordAttacks");
-        }
+
+        if( Input.GetAxisRaw("Fire2") != 0)
+            {
+                if(x_isAxisInUse == false)
+                {
+                    // Call your event function here.
+                    an.SetBool("AttackSlam", true);
+                    StartCoroutine("asd");
+                    StartCoroutine("SwordAttacks", attack2);
+                    x_isAxisInUse = true;
+                }
+            }
+        if(Input.GetAxisRaw("Fire2") == 0)
+        {
+            x_isAxisInUse = false;
+        }  
+
+
         if(Input.GetButtonDown("Fire3")){
             an.SetBool("FireBall", true);
             StartCoroutine("asd");
@@ -177,8 +222,9 @@ public class PlayerGood : MonoBehaviour
         
     }
 
-    IEnumerator SwordAttacks(){
+    IEnumerator SwordAttacks(AudioClip swordSound){    
         yield return new WaitForSeconds(.7f);
+        aSource.PlayOneShot(swordSound,1);
         GameObject[] validEnemies;
 
          Collider[] enemies = Physics.OverlapSphere(
@@ -231,7 +277,7 @@ public class PlayerGood : MonoBehaviour
 
     // }
     void ShootWeapon(){
-        
+        aSource.PlayOneShot(fireball,1);
         var rX = Random.Range(-spreadFactor, spreadFactor);
         var rY = Random.Range(-spreadFactor, spreadFactor);
         var rZ = Random.Range(-spreadFactor, spreadFactor);
@@ -247,8 +293,12 @@ public class PlayerGood : MonoBehaviour
 
     public void TakeDamage(float damage){
         if(health > 0.01){
+            aSource.PlayOneShot(takedamage,1);
             health -= damage;
             hperc = health/ maxHealth + 0.05f;
+
+            healthBar.setHealth(health);
+
             if(health<=0){
                 OnDeath();
                 //gameObject.transform.position = respawn.transform.position + respawnOffset;
@@ -262,6 +312,9 @@ public class PlayerGood : MonoBehaviour
 
     void OnDeath(){
         an.SetTrigger("Die");
+        aSource.PlayOneShot(die,1);
+        aSource.clip = menuSong;
+        aSource.Play();
         dead = true;
         print("You Died!");
     }
@@ -274,9 +327,10 @@ public class PlayerGood : MonoBehaviour
 
     public void Heal(float _heal){
         health += _heal; 
-        if( health > maxHealth ){
+        if (health > maxHealth) {
             health = maxHealth;
         }
+        healthBar.setHealth(health);
     }
 
     public void BoostDamage(float _boost){
