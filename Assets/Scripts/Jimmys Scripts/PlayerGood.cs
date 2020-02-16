@@ -166,7 +166,7 @@ public class PlayerGood : MonoBehaviour
     IEnumerator asd(){
         yield return new WaitForSeconds(1f);
         an.SetBool("Attack 0", false);
-
+    }
     void WeaponFire(){
         if(Input.GetMouseButtonDown(0) && weapon_1)
         {
