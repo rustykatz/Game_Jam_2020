@@ -4723,6 +4723,7 @@ Transform:
   m_LocalPosition: {x: -0.46831524, y: -7.736415e-17, z: 3.4841719}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4003193367525339531}
   - {fileID: 6179962366733601455}
   - {fileID: 9219659357116039995}
   m_Father: {fileID: 0}
@@ -4791,8 +4792,8 @@ MonoBehaviour:
   hpText: {fileID: 0}
   textBox2: {fileID: 0}
   textBox3: {fileID: 0}
-  bulletSpawn_RT: {fileID: 0}
-  bulletSpawn_LT: {fileID: 0}
+  bulletSpawn_RT: {fileID: 4003193367525339531}
+  bulletSpawn_LT: {fileID: 4003193367525339531}
   bulletSpeed: 20
   bulletPrefab: {fileID: 0}
   spreadFactor: 100
@@ -4929,7 +4930,7 @@ Transform:
   m_Children:
   - {fileID: 5579610745539639999}
   m_Father: {fileID: 7988805473981585984}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6550248941748128330
 GameObject:
@@ -5584,7 +5585,7 @@ Transform:
   - {fileID: 114624992578593813}
   - {fileID: 51821044092923308}
   m_Father: {fileID: 7988805473981585984}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7526769958233340079
 GameObject:
@@ -5742,6 +5743,36 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.011048263, y: 0.07687233, z: -0.0024894848}
     m_Extent: {x: 0.023217859, y: 0.015809441, z: 0.08836258}
   m_DirtyAABB: 0
+--- !u!1 &7617515294530617034
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4003193367525339531}
+  m_Layer: 0
+  m_Name: ProjectileSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4003193367525339531
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7617515294530617034}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.015, y: 1.152, z: 0.232}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7988805473981585984}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7631336045541352615
 GameObject:
   m_ObjectHideFlags: 0
