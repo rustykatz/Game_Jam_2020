@@ -10750,7 +10750,7 @@ MonoBehaviour:
   spawn_4: {fileID: 1221085206}
   spawnOne: 0
   spawnRepeat: 1
-  timerInterval: 2
+  timerInterval: 100000
   toSpawn: {fileID: 3561249823681174144, guid: 2ad6f13ebf2ae4816ab8081735375964, type: 3}
   obj_index: 0
   loc: []
@@ -16414,6 +16414,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3561249823681174146, guid: 2ad6f13ebf2ae4816ab8081735375964,
+        type: 3}
+      propertyPath: eSpeed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3561249823681174151, guid: 2ad6f13ebf2ae4816ab8081735375964,
         type: 3}
