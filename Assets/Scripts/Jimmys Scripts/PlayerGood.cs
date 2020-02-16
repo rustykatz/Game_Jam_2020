@@ -7,13 +7,18 @@ using UnityEngine.UI;
 public class PlayerGood : MonoBehaviour
 {
 
-    public float speed = 10f;
+    public float ForwardBackMoveSpeed = 5f;
+    public float LeftRightMoveSpeed = 5f;
+    public float LeftRightLookSpeed = 2f;
+
     public Vector3 move;
     public Vector3 velocity;
     public float gravity = -9.8f;
     public float sens = 5f;
     CharacterController controller;
     public float jumpHeight = 5f;
+
+    public GameObject CameraObject;
 
     // Player Health Management
     public float health;
@@ -49,14 +54,18 @@ public class PlayerGood : MonoBehaviour
     public GameObject respawn; 
     Vector3 respawnOffset;
 
+    Animator an;
+
     // test message
     public string tm1;
+
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
+        an = GetComponent<Animator>();
 
         // Starting Stats
         health = 10;
@@ -75,6 +84,7 @@ public class PlayerGood : MonoBehaviour
         Movement();
         Gravity();
         Look();
+        Attack();
         UIupdate();
         TestSendMsg(tm1);
         WeaponFire();
@@ -90,8 +100,25 @@ public class PlayerGood : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
 
-        transform.Rotate(0, mouseX * sens, 0);
-        Camera.main.gameObject.transform.Rotate(-mouseY * sens,0,0);
+        if(mouseX > 0){
+            an.SetBool("RightStrafe",true);
+            an.SetBool("LeftStrafe",false);
+        }
+        else //if (mouseX)
+        {
+            an.SetBool("RightStrafe",false);
+            an.SetBool("LeftStrafe",true);
+        }
+        if (mouseX < 0.05 && mouseX > -0.05){
+            an.SetBool("RightStrafe",false);
+            an.SetBool("LeftStrafe",false);
+        }
+
+        //transform.Rotate(0, mouseX * sens, 0);
+        Vector3 thing = transform.right * mouseX;
+        controller.Move(thing * LeftRightMoveSpeed * Time.deltaTime);
+        
+        CameraObject.transform.Rotate(mouseY * sens,0,0);
     }
 
     void Gravity(){
@@ -107,9 +134,38 @@ public class PlayerGood : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         
-        move = transform.right * x + transform.forward * z;
-        controller.Move(move * speed * Time.deltaTime);
+        //Animations x != 0 ||
+        if(z != 0){
+            an.SetBool("Running",true);
+        }
+        else
+        {
+            an.SetBool("Running",false);
+        }
+        if(z < 0)
+            x = -x;
+        transform.Rotate(0, x * LeftRightLookSpeed, 0);
+
+//transform.right * x + 
+        move = transform.forward * z;
+        
+        
+        controller.Move(move * ForwardBackMoveSpeed * Time.deltaTime);
     }
+
+
+    void Attack(){
+        if (Input.GetAxis("Fire1") > 0){
+            an.SetBool("Attack 0", true);
+            StartCoroutine("asd");
+            //an.SetBool("Attack 0", false);
+            //an.ResetTrigger("Attack"); 
+        }
+    }
+
+    IEnumerator asd(){
+        yield return new WaitForSeconds(1f);
+        an.SetBool("Attack 0", false);
 
     void WeaponFire(){
         if(Input.GetMouseButtonDown(0) && weapon_1)
@@ -171,6 +227,7 @@ public class PlayerGood : MonoBehaviour
     public void WeaponUpgrade(int _upgrade){
         weaponLevel += _upgrade; 
         print("PLAYER: Weapon Level -> " + weaponLevel.ToString());
+
     }
 
     public void Heal(float _heal){
