@@ -44,7 +44,7 @@ public class GameHandler : MonoBehaviour
         //for socket:
         GameObject go = GameObject.Find("SocketIO");
         socket = go.GetComponent<SocketIOComponent>();
-        socket.On("sendResults", GetServerData); 
+        socket.On("sendResults", getData); 
     }
 
     // Update is called once per frame
@@ -87,15 +87,21 @@ public class GameHandler : MonoBehaviour
 
     // Gets user choice from server
     
-    public void GetServerData(SocketIOEvent e){
+    public void getData(SocketIOEvent e){
        print(e.data);
+       //to access individual parts, try:
+       //e.data.ob1, ob2, ob3, ob4
     }
     
     // Prepares and sends object to server
     
     public void SendStateData(string c1,string c2, string c3, string c4){
-        string[] choice = {c1,c2,c3,c4};
-        //socket.Emit("requestVote", choice);
+        JSONObject choice = new JSONObject(JSONObject.Type.OBJECT);
+        choice.AddField("op1:", c1);
+        choice.AddField("op2:", c2);
+        choice.AddField("op3:", c3);
+        choice.AddField("op4:", c4);
+        socket.Emit("requestVote", choice);
         
     }
     
