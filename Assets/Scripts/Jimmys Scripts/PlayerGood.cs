@@ -44,7 +44,7 @@ public class PlayerGood : MonoBehaviour
     [SerializeField] private bool weapon_1;
     [SerializeField] private bool weapon_2;
 
-
+    public bool dead = false;
     
     private int impWeapons = 2;
     public float damage;
@@ -81,14 +81,15 @@ public class PlayerGood : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        Movement();
-        Gravity();
-        Look();
-        Attack();
-        UIupdate();
-        TestSendMsg(tm1);
-        WeaponFire();
-       
+        if(!dead){
+            Movement();
+            Gravity();
+            Look();
+            Attack();
+            UIupdate();
+            TestSendMsg(tm1);
+            WeaponFire();
+        } 
     }
     void UIupdate(){
         hpText.GetComponent<TextMeshProUGUI>().SetText("HP: " + health.ToString());
@@ -159,20 +160,57 @@ public class PlayerGood : MonoBehaviour
         if (Input.GetAxis("Fire1") > 0){
             an.SetBool("Attack 0", true);
             StartCoroutine("asd");
-            //an.SetBool("Attack 0", false);
-            //an.ResetTrigger("Attack"); 
+            StartCoroutine("SwordAttacks");
         }
+        if(Input.GetAxis("Fire2") > 0){
+            an.SetBool("AttackSlam", true);
+            StartCoroutine("asd");
+            StartCoroutine("SwordAttacks");
+        }
+        if(Input.GetButtonDown("Fire3")){
+            an.SetBool("FireBall", true);
+            StartCoroutine("asd");
+            ShootWeapon();
+        }
+
+
+        
+    }
+
+    IEnumerator SwordAttacks(){
+        yield return new WaitForSeconds(.7f);
+        GameObject[] validEnemies;
+
+         Collider[] enemies = Physics.OverlapSphere(
+            transform.position,
+            3
+            );    
+
+        foreach (Collider test in enemies){
+            
+            if (test.gameObject.tag == "Enemy"){
+                //validEnemies.Add(test.gameObject);
+                Destroy(test.gameObject);
+                print("Hi");
+            }
+		}
+    }
+
+    void OnDrawGizmos(){
+        Gizmos.DrawWireCube(transform.position + new Vector3(0,.5f,.5f), transform.localScale);
     }
 
     IEnumerator asd(){
         yield return new WaitForSeconds(1f);
         an.SetBool("Attack 0", false);
+        an.SetBool("AttackSlam", false);
+        an.SetBool("FireBall", false);
     }
     
     void WeaponFire(){
         if(Input.GetMouseButtonDown(0) && weapon_1)
         {
-            ShootWeapon();
+            
         }
         
     }
@@ -213,16 +251,18 @@ public class PlayerGood : MonoBehaviour
             hperc = health/ maxHealth + 0.05f;
             if(health<=0){
                 OnDeath();
-                gameObject.transform.position = respawn.transform.position + respawnOffset;
-                health = 10;
-                print("Health reset: " + health.ToString());
-                maxHealth = health;
+                //gameObject.transform.position = respawn.transform.position + respawnOffset;
+                //health = 10;
+                //print("Health reset: " + health.ToString());
+                //maxHealth = health;
 
             }
         }
     }
 
     void OnDeath(){
+        an.SetTrigger("Die");
+        dead = true;
         print("You Died!");
     }
 

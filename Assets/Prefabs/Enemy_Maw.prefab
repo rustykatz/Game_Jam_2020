@@ -1235,9 +1235,10 @@ GameObject:
   - component: {fileID: 2713919866300163115}
   - component: {fileID: 2713919866300163114}
   - component: {fileID: 2713919866300163117}
+  - component: {fileID: 6515418704096008696}
   m_Layer: 0
   m_Name: Enemy_Maw
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1324,7 +1325,7 @@ MonoBehaviour:
   navAgent: {fileID: 0}
   target: {fileID: 0}
   impulseForce: 2
-  maxDistance: 0
+  maxDistance: 100
   eSpeed: 2
   dmg: 1
 --- !u!195 &2713919866300163117
@@ -1349,6 +1350,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &6515418704096008696
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6235280598655384927}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.51, z: 1}
+  m_Center: {x: 0, y: 0.93, z: 0}
 --- !u!1 &6374076189108126815
 GameObject:
   m_ObjectHideFlags: 0

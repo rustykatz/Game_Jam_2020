@@ -1899,9 +1899,10 @@ GameObject:
   - component: {fileID: 123220992983937875}
   - component: {fileID: 123220992983937874}
   - component: {fileID: 123220992983937877}
+  - component: {fileID: 5493433704188312228}
   m_Layer: 0
   m_Name: Enemy_Parasite
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1988,7 +1989,7 @@ MonoBehaviour:
   navAgent: {fileID: 0}
   target: {fileID: 0}
   impulseForce: 2
-  maxDistance: 0
+  maxDistance: 100
   eSpeed: 2
   dmg: 1
 --- !u!195 &123220992983937877
@@ -2013,6 +2014,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &5493433704188312228
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8256269927755999815}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.57, z: 1}
+  m_Center: {x: 0, y: 1.01, z: 0}
 --- !u!1 &8605755045455580665
 GameObject:
   m_ObjectHideFlags: 0
