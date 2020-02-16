@@ -25,6 +25,7 @@ public class PlayerGood : MonoBehaviour
     public float maxHealth; 
     private float hperc;
     public TextMeshProUGUI hpText;
+    public HealthBarController healthBar;
 
     //
     public TextMeshProUGUI textBox2;
@@ -76,6 +77,7 @@ public class PlayerGood : MonoBehaviour
         weapon_1= true;
         weapon_2 = false;
 
+        healthBar.setMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
@@ -249,6 +251,9 @@ public class PlayerGood : MonoBehaviour
         if(health > 0.01){
             health -= damage;
             hperc = health/ maxHealth + 0.05f;
+
+            healthBar.setHealth(health);
+
             if(health<=0){
                 OnDeath();
                 //gameObject.transform.position = respawn.transform.position + respawnOffset;
@@ -274,9 +279,10 @@ public class PlayerGood : MonoBehaviour
 
     public void Heal(float _heal){
         health += _heal; 
-        if( health > maxHealth ){
+        if (health > maxHealth) {
             health = maxHealth;
         }
+        healthBar.setHealth(health);
     }
 
     public void BoostDamage(float _boost){
