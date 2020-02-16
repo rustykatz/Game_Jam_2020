@@ -87,7 +87,7 @@ public class PlayerGood : MonoBehaviour
         health = 10;
         maxHealth = health;
         weaponLevel = 1;
-        damage = 1; 
+        damage = 2; 
 
         weapon_1= true;
         weapon_2 = false;
@@ -236,7 +236,11 @@ public class PlayerGood : MonoBehaviour
             
             if (test.gameObject.tag == "Enemy"){
                 //validEnemies.Add(test.gameObject);
-                Destroy(test.gameObject);
+                //Destroy(test.gameObject);
+
+                test.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+                print(test.ToString() + "Damage:" + damage.ToString());
+
                 //print("Hi");
             }
 		}
