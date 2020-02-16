@@ -29,7 +29,12 @@ public class GameHandler : MonoBehaviour
     public int score;
 
 
+    public string[] c1 = { "my", "pee", "balls"};
+    public string[] c2 = { "my2", "pee2", "balls2"};
+    public string[] c3 = { "my3", "pee3", "balls3"};
+    public string[] c4 = { "my4", "pee4", "balls4"};
 
+    int cc =0;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,7 +55,7 @@ public class GameHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        BigBrain(msg);
+        //BigBrain(msg);
         UpdateText();
         if(gameRunning == true){
             diffTimerRun = true; 
@@ -81,16 +86,22 @@ public class GameHandler : MonoBehaviour
         3) SENDS NEXT CHOICES
         SendStateData([s,s1,s2,s3])
     */
-
-
-  
-
     // Gets user choice from server
-    
     public void getData(SocketIOEvent e){
-       print(e.data);
+        print(e.data);
        //to access individual parts, try:
        //e.data.ob1, ob2, ob3, ob4
+       // print(e.data.list[1]);
+       // print(e.data.list[1].n ==6);
+
+        // Spawn sub routine
+        SpawnHandler(e.data.list[0].n, e.data.list[1].n, e.data.list[2].n, e.data.list[3].n);
+
+
+        // Send next choices to server 
+        SendStateData(c1[cc],c2[cc],c3[cc],c4[cc]);
+        cc++; 
+       //SendStateData("I","WANT","TO","DIE");
     }
     
     // Prepares and sends object to server
@@ -101,26 +112,20 @@ public class GameHandler : MonoBehaviour
         choice.AddField("op2:", c2);
         choice.AddField("op3:", c3);
         choice.AddField("op4:", c4);
-        socket.Emit("requestVote", choice);
-        
+        socket.Emit("requestVote", choice);    
     }
     
 
-    /*
-        Big brain takes an input message s from the server and makes the 
-        changes to the game.
-    */
+    public void SpawnHandler(float c1, float c2, float c3, float c4){
+        //print("IN Big Brain");
 
-    public void BigBrain(string s){
-        if(s == "test123"){
-            s1 = s;
-            // Do something
-        }
-        else if(s == "test456"){
-            s1 =s;
-            // Do something
+        print("C1: " + c1.ToString());
+        print("C2: " + c1.ToString());
+        print("C3: " + c1.ToString());
+        print("C4: " + c1.ToString());
 
-        }
+        // Gets Max of choices
+        s1 = (Mathf.Max(c1,c2,c3,c4)).ToString();
 
     }
 
