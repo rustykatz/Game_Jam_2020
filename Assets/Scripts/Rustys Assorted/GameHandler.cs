@@ -46,6 +46,7 @@ public class GameHandler : MonoBehaviour
     public string[] choice3 = { "OP3_1", "OP3_2", "OP3_3"};
     public string[] choice4 = { "OP4_1", "OP4_2", "OP4_3"};
 
+    bool begin; 
    
     // Start is called before the first frame update
     void Start()
@@ -64,6 +65,7 @@ public class GameHandler : MonoBehaviour
         socket.On("sendResults", getData); 
     }
 
+
     // Update is called once per frame
     void Update()
     {
@@ -77,6 +79,13 @@ public class GameHandler : MonoBehaviour
         }
         if(diffTimerRun == true){
             StartCoroutine(DifficultyScale());
+        }
+
+
+        if(Input.GetKeyDown(KeyCode.K)){
+            SendStateData(choice1[cc],choice2[cc],choice3[cc],choice4[cc]);
+            print("SENDING THE DATA ");
+
         }
     }
 
@@ -133,7 +142,7 @@ public class GameHandler : MonoBehaviour
     IEnumerator DifficultyScale(){
         diffTimer += 1;
         if(diffTimer >60){
-            difficulty += 0.01f;
+            difficulty += 0.05f;
             diffTimer = 0;
             // print("Increasing difficulty!");
         }
@@ -196,10 +205,21 @@ public class GameHandler : MonoBehaviour
         
         // Select random index 
         //int rLoc = Random.Range(0,3);
-        Instantiate(toSpawn, loc[cidx].transform.position, Quaternion.identity);
-        print("SPAWNING " + choice.ToString());
+
+        /* Get # people to spawn 
+            Time between spawns = MaxFreq - B * Difficulty 
+             
+        */
+        int numSpawn = 0; 
+
+        numSpawn = (int)Mathf.Floor(4 * difficulty); 
 
 
+        for(int i=0; i<= numSpawn; i++){
+            Instantiate(toSpawn, loc[cidx].transform.position, Quaternion.identity);
+            print("SPAWNING "+ choice.ToString() + "#: "+ i.ToString());
+        }
+        //Instantiate(toSpawn, loc[cidx].transform.position, Quaternion.identity);
     }
 
 

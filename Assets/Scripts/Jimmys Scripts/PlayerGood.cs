@@ -191,7 +191,7 @@ public class PlayerGood : MonoBehaviour
             if (test.gameObject.tag == "Enemy"){
                 //validEnemies.Add(test.gameObject);
                 Destroy(test.gameObject);
-                print("Hi");
+                //print("Hi");
             }
 		}
     }
