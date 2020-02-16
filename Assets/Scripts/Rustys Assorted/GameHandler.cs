@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-//using SocketIO;
+using SocketIO;
 
 public class GameHandler : MonoBehaviour
 {
-    //SocketIOComponent socket;
+    SocketIOComponent socket;
     public int Score; 
     public bool gameRunning; 
     public bool diffTimerRun;
@@ -42,11 +42,9 @@ public class GameHandler : MonoBehaviour
         s2= "NONE";
         
         //for socket:
-        /*
         GameObject go = GameObject.Find("SocketIO");
         socket = go.GetComponent<SocketIOComponent>();
-        socket.On('requestVote', getServerData());
-        */
+        socket.On("sendResults", GetServerData); 
     }
 
     // Update is called once per frame
@@ -88,20 +86,19 @@ public class GameHandler : MonoBehaviour
   
 
     // Gets user choice from server
-    /*
+    
     public void GetServerData(SocketIOEvent e){
-       choice = e.data;
        print(e.data);
     }
-    */
+    
     // Prepares and sends object to server
-    /*
+    
     public void SendStateData(string c1,string c2, string c3, string c4){
         string[] choice = {c1,c2,c3,c4};
-        socket.Emit("requestVote", choice);
+        //socket.Emit("requestVote", choice);
         
     }
-    */
+    
 
     /*
         Big brain takes an input message s from the server and makes the 
