@@ -6,11 +6,10 @@ using UnityEngine;
 public class Bullet : MonoBehaviour {
 
     private float dmg; 
-    public int speed = 10;
 
     void Awake(){
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Player playerScript = player.GetComponent<Player>();
+        PlayerGood playerScript = player.GetComponent<PlayerGood>();
         dmg = playerScript.damage;
     }
 
