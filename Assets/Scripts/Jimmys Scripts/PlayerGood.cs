@@ -118,7 +118,7 @@ public class PlayerGood : MonoBehaviour
         Vector3 thing = transform.right * mouseX;
         controller.Move(thing * LeftRightMoveSpeed * Time.deltaTime);
         
-        CameraObject.transform.Rotate(mouseY * sens,0,0);
+        //CameraObject.transform.Rotate(mouseY * sens,0,0);
     }
 
     void Gravity(){
@@ -136,6 +136,7 @@ public class PlayerGood : MonoBehaviour
         
         //Animations x != 0 ||
         if(z != 0){
+            an.SetTrigger("GoToIdle");
             an.SetBool("Running",true);
         }
         else
