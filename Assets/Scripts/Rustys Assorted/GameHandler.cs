@@ -28,13 +28,25 @@ public class GameHandler : MonoBehaviour
 
     public int score;
 
+    // Type to spawn
+    public GameObject[] c1;
+    public GameObject[] c2;
+    public GameObject[] c3;
+    public GameObject[] c4;
 
-    public string[] c1 = { "my", "pee", "balls"};
-    public string[] c2 = { "my2", "pee2", "balls2"};
-    public string[] c3 = { "my3", "pee3", "balls3"};
-    public string[] c4 = { "my4", "pee4", "balls4"};
 
+    // Spawn Locations
+    public GameObject[] loc;
+
+    // Choice Counter
     int cc =0;
+
+    // public string[] choice1 = { "my", "pee", "balls"};
+    // public string[] choice2 = { "my2", "pee2", "balls2"};
+    // public string[] choice3 = { "my3", "pee3", "balls3"};
+    // public string[] choice4 = { "my4", "pee4", "balls4"};
+
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -108,26 +120,15 @@ public class GameHandler : MonoBehaviour
     
     public void SendStateData(string c1,string c2, string c3, string c4){
         JSONObject choice = new JSONObject(JSONObject.Type.OBJECT);
-        choice.AddField("op1:", c1);
-        choice.AddField("op2:", c2);
-        choice.AddField("op3:", c3);
-        choice.AddField("op4:", c4);
+        choice.AddField("op1", c1);
+        choice.AddField("op2", c2);
+        choice.AddField("op3", c3);
+        choice.AddField("op4", c4);
         socket.Emit("requestVote", choice);    
     }
     
 
-    public void SpawnHandler(float c1, float c2, float c3, float c4){
-        //print("IN Big Brain");
-
-        print("C1: " + c1.ToString());
-        print("C2: " + c1.ToString());
-        print("C3: " + c1.ToString());
-        print("C4: " + c1.ToString());
-
-        // Gets Max of choices
-        s1 = (Mathf.Max(c1,c2,c3,c4)).ToString();
-
-    }
+   
 
     IEnumerator DifficultyScale(){
         diffTimer += 1;
@@ -151,6 +152,51 @@ public class GameHandler : MonoBehaviour
     public void GetMsg(string _msg){
         msg = _msg;
     }
+
+    /*
+    It's 11:47 AM and spaghetti code is allowed. 
+    I apologize to future me or whoever has to look at this mess of code
+    for whatever reason. If I was a gud boi I would separate spawning 
+    into another script i.e. using my SpawnAtLocation.cs but right now its
+    chad programming time so lets just put it here and call it a day ;) 
+    */
+    
+     public void SpawnHandler(float c1, float c2, float c3, float c4){
+        // print("C1: " + c1.ToString());
+        // print("C2: " + c2.ToString());
+        // print("C3: " + c3.ToString());
+        // print("C4: " + c4.ToString());
+
+        // Gets Max of choices
+        float maxC = Mathf.Max(c1,c2,c3,c4); 
+        s1 = maxC.ToString();
+
+        if(c1 == maxC){
+            GameObject toSpawn = c1[cc];
+        }
+        else if(c2== maxC){
+            GameObject toSpawn = c2[cc];
+        }
+        else if(c3== maxC){
+            GameObject toSpawn = c3[cc];
+        }
+        else if(c4== maxC){
+            GameObject toSpawn = c4[cc];
+        }
+        
+        // Select random index 
+        int rLoc = Random.Range(0,3);
+        Instantiate(toSpawn, loc[rLoc].transform.position, Quaternity.identity);
+        print("SPAWNING: " + toSpawn.ToString());
+
+
+    }
+
+
+
+
+
+
      /*
     EVENTS 
     a) NEED To freeze game state until player moves
