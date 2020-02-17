@@ -29,10 +29,10 @@ public class GameHandler : MonoBehaviour
     public int score;
 
     // Type to spawn
-    GameObject[] c1;
-    GameObject[] c2;
-    GameObject[] c3;
-    GameObject[] c4;
+    public GameObject[] c1;
+    public GameObject[] c2;
+    public GameObject[] c3;
+    public GameObject[] c4;
 
     GameObject toSpawn; 
     // Spawn Locations
@@ -148,12 +148,17 @@ public class GameHandler : MonoBehaviour
        // print(e.data.list[1].n ==6);
 
         // Spawn sub routine
-        SpawnHandler(e.data.list[0].n, e.data.list[1].n, e.data.list[2].n, e.data.list[3].n);
-
-
+        try{
+            SpawnHandler(e.data.list[0].n, e.data.list[1].n, e.data.list[2].n, e.data.list[3].n);
+        }
+        catch{
+            print("error lool");
+        }
+        cc++; 
         // Send next choices to server 
         SendStateData(choice1[cc],choice2[cc],choice3[cc],choice4[cc]);
-        cc++; 
+        print("getData IN CYCLE");
+        
        //SendStateData("I","WANT","TO","DIE");
     }
     
@@ -212,75 +217,72 @@ public class GameHandler : MonoBehaviour
         int cidx =0;
         string choice = "";
 
-
-        if(cc>= 6){
-            cc = 6;
-        }
-
         if(op1 == maxC){
             toSpawn = c1[cc];
             choice = choice1[cc];
             cidx = 0;
         }
-        else if(op2== maxC){
+        if(op2== maxC){
             toSpawn = c2[cc];
             choice = choice2[cc];
             cidx = 1;
         }
-        else if(op3== maxC){
+        if(op3== maxC){
             toSpawn = c3[cc];
             choice = choice3[cc];
             cidx= 2;
         }
-        else if(op4== maxC){
+        if(op4== maxC){
             toSpawn = c4[cc];
             choice = choice4[cc];
             cidx= 3;
         }
         
         int numSpawn = 0; 
-        int rUnit = Random.Range(0,3);
-        numSpawn = (int)Mathf.Floor(2 * difficulty * rUnit); 
-        
+        int rUnit = Random.Range(1,5);
+        numSpawn = (int)Mathf.Floor(2 * difficulty + rUnit); 
+        print(cc);
         // Round Logic
         if(cc== 0){
             // SELECT DIFFICULTY
-
+            difficulty += cidx; 
+            print("Difficulty set -> "+ difficulty.ToString());
            
         }
-        else if(cc==1){
+        if(cc==1){
             // Select Weapon
              swords[cidx].SetActive(true);
+             print(swords[cidx].name);
 
         }
-        else if(cc==2){
+        if(cc==2){
             // Select Enemies
             for(int i=0; i<= numSpawn; i++){
                 Instantiate(toSpawn, loc[cidx].transform.position, Quaternion.identity);
                 print("SPAWNING "+ choice.ToString() + "#: "+ i.ToString());
             }
         }
-        else if(cc==3){
+        if(cc==3){
             // Select Enemies
             for(int i=0; i<= numSpawn; i++){
                 Instantiate(toSpawn, loc[cidx].transform.position, Quaternion.identity);
                 print("SPAWNING "+ choice.ToString() + "#: "+ i.ToString());
             }
         }
-        else if(cc==4){
+        if(cc==4){
             // Select Weapon
-
+             swords[cidx].SetActive(true);
+             print(swords[cidx].name);
         }
-        else if(cc==5){
+        if(cc==5){
             // Select Enemies
             for(int i=0; i<= numSpawn; i++){
                 Instantiate(toSpawn, loc[cidx].transform.position, Quaternion.identity);
                 print("SPAWNING "+ choice.ToString() + "#: "+ i.ToString());
             }
         }
-
         // Anththing beyond level 6 will onlt spawn bosses 
-        else if(cc>=6){
+        if(cc>=6){
             // Select Boss
             Instantiate(toSpawn, loc[cidx].transform.position, Quaternion.identity);
 

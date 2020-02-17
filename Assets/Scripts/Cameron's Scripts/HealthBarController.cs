@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class HealthBarController : MonoBehaviour {
 
-    Slider slider;
+    public Slider slider;
     public Gradient gradient;
     public Image fill;
     
     void Start(){
-        slider = GetComponent<Slider>();
+        //slider = GetComponent<Slider>();
     }
 
     public void setMaxHealth(float health) {
