@@ -835,6 +835,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 109173488}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &109840954 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3145558242442780869, guid: 824ba5b7cf9f7b044b54ef89496ff7e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 587870801}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &112707432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5499,6 +5505,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3145558242442780869, guid: 824ba5b7cf9f7b044b54ef89496ff7e2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3145558243093742234, guid: 824ba5b7cf9f7b044b54ef89496ff7e2,
         type: 3}
       propertyPath: hpText
@@ -5539,6 +5550,11 @@ PrefabInstance:
       propertyPath: deathScreen
       value: 
       objectReference: {fileID: 889890970}
+    - target: {fileID: 6378972392895881078, guid: 824ba5b7cf9f7b044b54ef89496ff7e2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6378972394258212947, guid: 824ba5b7cf9f7b044b54ef89496ff7e2,
         type: 3}
       propertyPath: m_Name
@@ -14215,7 +14231,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1503104439}
-  m_LocalRotation: {x: 0.22674623, y: 0.67640704, z: -0.23194055, w: 0.6612589}
+  m_LocalRotation: {x: 0.22674626, y: 0.676407, z: -0.23194057, w: 0.6612589}
   m_LocalPosition: {x: 1.0869255, y: 0.7147846, z: 1.4597855}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -14801,12 +14817,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4276324180339636, guid: 1aad01ae01d836647b215e40f1f4c1a7,
     type: 3}
   m_PrefabInstance: {fileID: 1557583983}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1557981735 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6378972392895881078, guid: 824ba5b7cf9f7b044b54ef89496ff7e2,
-    type: 3}
-  m_PrefabInstance: {fileID: 587870801}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1558585647 stripped
 GameObject:
@@ -20479,7 +20489,7 @@ PrefabInstance:
         type: 3}
       propertyPath: sword4
       value: 
-      objectReference: {fileID: 1557981735}
+      objectReference: {fileID: 109840954}
     - target: {fileID: 2649921615510504774, guid: bd3d89186932a4c28b8cd4e68e430303,
         type: 3}
       propertyPath: m_LocalPosition.x
