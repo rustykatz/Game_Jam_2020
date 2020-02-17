@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda131c8eb9f7448b95795c63fe69391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: {fileID: 0}
+  healthBar: {fileID: 8741516587511887141}
   health: 5
   takeDamage: {fileID: 8300000, guid: ccd4af33c436df846a944ae44fcaf848, type: 3}
   points: 5

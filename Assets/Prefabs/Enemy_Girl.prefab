@@ -476,7 +476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda131c8eb9f7448b95795c63fe69391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: {fileID: 0}
+  healthBar: {fileID: 8799055565589369596}
   health: 10
   takeDamage: {fileID: 0}
   points: 5

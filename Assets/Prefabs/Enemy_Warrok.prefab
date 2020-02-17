@@ -1750,7 +1750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda131c8eb9f7448b95795c63fe69391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 6764200492083691351}
   health: 10
   takeDamage: {fileID: 8300000, guid: ccd4af33c436df846a944ae44fcaf848, type: 3}
   points: 5
@@ -2557,6 +2557,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28381b346092542d0bc1f086b6e9acc2, type: 3}
+--- !u!114 &6764200492083691351 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1925628195349644734, guid: 28381b346092542d0bc1f086b6e9acc2,
+    type: 3}
+  m_PrefabInstance: {fileID: 5144922934059563753}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18922677d3dfa4ea0b38b8473125cf8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1013171596081707040 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5290025407479169737, guid: 28381b346092542d0bc1f086b6e9acc2,
