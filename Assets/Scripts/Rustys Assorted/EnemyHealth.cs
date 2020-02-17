@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour {
 
-    [SerializeField] private HealthBar hp; 
+    [SerializeField] private HealthBarController healthBar; 
     private float totalHealth; 
     public float health =10;
     private float hperc; 
@@ -20,6 +20,7 @@ public class EnemyHealth : MonoBehaviour {
 	void Awake(){
         asource = GetComponent<AudioSource>();
         totalHealth = health;
+        healthBar.setMaxHealth(health);
         gameHandler = GameObject.FindGameObjectWithTag("GameHandler");
     }
 
@@ -34,12 +35,12 @@ public class EnemyHealth : MonoBehaviour {
                 Destroy(gameObject);
                 //hp.SetSize(0);
             }
+            healthBar.setHealth(health);
         }
     }
 
     void OnDeath(int points){
         gameHandler.GetComponent<GameHandler>().AddScore(points);
         gameHandler.GetComponent<GameHandler>().AddDifficulty(diffFactor);
-
     }
 }
