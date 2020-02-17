@@ -29,10 +29,10 @@ public class GameHandler : MonoBehaviour
     public int score;
 
     // Type to spawn
-    public GameObject[] c1;
-    public GameObject[] c2;
-    public GameObject[] c3;
-    public GameObject[] c4;
+    GameObject[] c1;
+    GameObject[] c2;
+    GameObject[] c3;
+    GameObject[] c4;
 
     GameObject toSpawn; 
     // Spawn Locations
@@ -40,6 +40,9 @@ public class GameHandler : MonoBehaviour
 
     // Choice Counter
     int cc =0;
+
+    public GameObject[] swords; 
+
     /*
     ORDER OF OP
     1) Difficulty
@@ -66,10 +69,10 @@ public class GameHandler : MonoBehaviour
 
                                 20            15               15              15              15             15                      15
     */
-    public string[] choice1 = { "Easy",      "Buster",    "Hobgoblin",     "Hobgoblin",     "Buster",     "John from Marketing", "Destroyer of Worlds"};
-    public string[] choice2 = { "Medium",    "Excalibur", "Undead",        "Undead",        "Excalibur",  "Undead",              "Biggest Boss"};
-    public string[] choice3 = { "Hard",      "Plank",     "Troll Warlock", "Troll Warlock", "Plank",      "Troll Warlock",       "Deathbringer"};
-    public string[] choice4 = { "Pro Gamer", "Sycthe",    "Flesh Amalgm",  "Flesh Amalgm",  "Sycthe",     "Flesh Amalgm",        "The Unit" };
+    string[] choice1 = { "Easy",      "Buster",    "Hobgoblin",     "Hobgoblin",     "Buster",     "John from Marketing", "Destroyer of Worlds"};
+    string[] choice2 = { "Medium",    "Excalibur", "Undead",        "Undead",        "Excalibur",  "Undead",              "Biggest Boss"};
+    string[] choice3 = { "Hard",      "Plank",     "Troll Warlock", "Troll Warlock", "Plank",      "Troll Warlock",       "Deathbringer"};
+    string[] choice4 = { "Pro Gamer", "Scythe",    "Flesh Amalgm",  "Flesh Amalgm",  "Sycthe",     "Flesh Amalgm",        "The Unit" };
 
     bool begin; 
    
@@ -110,6 +113,10 @@ public class GameHandler : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.K)){
             SendStateData(choice1[cc],choice2[cc],choice3[cc],choice4[cc]);
             print("SENDING THE DATA ");
+            cc++;
+            if(cc >=6){
+                cc=6;
+            }
 
         }
     }
@@ -238,9 +245,13 @@ public class GameHandler : MonoBehaviour
         // Round Logic
         if(cc== 0){
             // SELECT DIFFICULTY
+
+           
         }
         else if(cc==1){
             // Select Weapon
+             swords[cidx].SetActive(true);
+
         }
         else if(cc==2){
             // Select Enemies
