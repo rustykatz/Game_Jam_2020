@@ -40,11 +40,36 @@ public class GameHandler : MonoBehaviour
 
     // Choice Counter
     int cc =0;
+    /*
+    ORDER OF OP
+    1) Difficulty
+    2) Weapon Select
+    3) Spawn-1
+    4) Spawn-2
+    5) Change Weapon
+    6) Spawn-3
+    7) Spawn- TITAN FORCED 
 
-    public string[] choice1 = { "OP1_1", "OP1_2", "OP1_3"};
-    public string[] choice2 = { "OP2_1", "OP2_2", "OP2_3"};
-    public string[] choice3 = { "OP3_1", "OP3_2", "OP3_3"};
-    public string[] choice4 = { "OP4_1", "OP4_2", "OP4_3"};
+    Blue 
+    Red
+    Green
+    Yellow
+
+    Hobgoblin
+    undead
+    troll warlock
+    flesh amalgm 
+    john from marketing 
+
+
+    Titan
+
+                                20            15               15              15              15             15                      15
+    */
+    public string[] choice1 = { "Easy",      "Buster",    "Hobgoblin",     "Hobgoblin",     "Buster",     "John from Marketing", "Destroyer of Worlds"};
+    public string[] choice2 = { "Medium",    "Excalibur", "Undead",        "Undead",        "Excalibur",  "Undead",              "Biggest Boss"};
+    public string[] choice3 = { "Hard",      "Plank",     "Troll Warlock", "Troll Warlock", "Plank",      "Troll Warlock",       "Deathbringer"};
+    public string[] choice4 = { "Pro Gamer", "Sycthe",    "Flesh Amalgm",  "Flesh Amalgm",  "Sycthe",     "Flesh Amalgm",        "The Unit" };
 
     bool begin; 
    
@@ -137,12 +162,10 @@ public class GameHandler : MonoBehaviour
     }
     
 
-   
-
     IEnumerator DifficultyScale(){
         diffTimer += 1;
         if(diffTimer >60){
-            difficulty += 0.05f;
+            difficulty += 0.1f;
             diffTimer = 0;
             // print("Increasing difficulty!");
         }
@@ -180,8 +203,13 @@ public class GameHandler : MonoBehaviour
         float maxC = Mathf.Max(op1,op2,op3,op4); 
         s1 = maxC.ToString();
         int cidx =0;
-
         string choice = "";
+
+
+        if(cc>= 6){
+            cc = 6;
+        }
+
         if(op1 == maxC){
             toSpawn = c1[cc];
             choice = choice1[cc];
@@ -203,62 +231,52 @@ public class GameHandler : MonoBehaviour
             cidx= 3;
         }
         
-        // Select random index 
-        //int rLoc = Random.Range(0,3);
-
-        /* Get # people to spawn 
-            Time between spawns = MaxFreq - B * Difficulty 
-             
-        */
         int numSpawn = 0; 
-
-        numSpawn = (int)Mathf.Floor(4 * difficulty); 
-
-
-        for(int i=0; i<= numSpawn; i++){
-            Instantiate(toSpawn, loc[cidx].transform.position, Quaternion.identity);
-            print("SPAWNING "+ choice.ToString() + "#: "+ i.ToString());
+        int rUnit = Random.Range(0,3);
+        numSpawn = (int)Mathf.Floor(2 * difficulty * rUnit); 
+        
+        // Round Logic
+        if(cc== 0){
+            // SELECT DIFFICULTY
         }
+        else if(cc==1){
+            // Select Weapon
+        }
+        else if(cc==2){
+            // Select Enemies
+            for(int i=0; i<= numSpawn; i++){
+                Instantiate(toSpawn, loc[cidx].transform.position, Quaternion.identity);
+                print("SPAWNING "+ choice.ToString() + "#: "+ i.ToString());
+            }
+        }
+        else if(cc==3){
+            // Select Enemies
+            for(int i=0; i<= numSpawn; i++){
+                Instantiate(toSpawn, loc[cidx].transform.position, Quaternion.identity);
+                print("SPAWNING "+ choice.ToString() + "#: "+ i.ToString());
+            }
+        }
+        else if(cc==4){
+            // Select Weapon
+
+        }
+        else if(cc==5){
+            // Select Enemies
+            for(int i=0; i<= numSpawn; i++){
+                Instantiate(toSpawn, loc[cidx].transform.position, Quaternion.identity);
+                print("SPAWNING "+ choice.ToString() + "#: "+ i.ToString());
+            }
+        }
+
+        // Anththing beyond level 6 will onlt spawn bosses 
+        else if(cc>=6){
+            // Select Boss
+            Instantiate(toSpawn, loc[cidx].transform.position, Quaternion.identity);
+
+        }
+
+
         //Instantiate(toSpawn, loc[cidx].transform.position, Quaternion.identity);
     }
-
-
-
-
-
-
-     /*
-    EVENTS 
-    a) NEED To freeze game state until player moves
-
-    1) Difficulty
-        - Use Bool to freeze spawning, Difficulty factor 
-    2) Choose Player weapon 
-        - 4 choices
-        1) Buster
-        2) Excalibur
-        3) Plank
-        4) Scythe
-    3) Choose which Enemies to Spawn
-        1)
-        2)
-        3)
-        4) 
-    4) Choose Natural Disaster
-        1)
-        2)
-        3)
-        4)
-    5) Choose Enemies to Spawn 
-        1)
-        2)
-        3)
-        4)
-    6) Choose Boss
-        1)
-        2)
-        3)
-        4)
-    */
     
 }
