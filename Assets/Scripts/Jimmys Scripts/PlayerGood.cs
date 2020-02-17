@@ -26,6 +26,7 @@ public class PlayerGood : MonoBehaviour
     private float hperc;
     public TextMeshProUGUI hpText;
     public HealthBarController healthBar;
+    public GameObject healthBarOnOff;
 
     //
     public TextMeshProUGUI textBox2;
@@ -57,7 +58,8 @@ public class PlayerGood : MonoBehaviour
 
     Animator an;
 
-    public AudioSource aSource;
+    public AudioSource sfxSource;
+    public AudioSource musicSource;
     public AudioClip attack;
     public AudioClip attack2;
     public AudioClip die;
@@ -65,6 +67,7 @@ public class PlayerGood : MonoBehaviour
     public AudioClip menuSong;
     public AudioClip gameSong;
     public AudioClip fireball;
+    public AudioClip curbyour;
 
     public bool playingsong = false;
     private bool m_isAxisInUse = false;
@@ -72,13 +75,16 @@ public class PlayerGood : MonoBehaviour
     // test message
     public string tm1;
 
+    public GameObject MainMenu;
+    public GameObject deathScreen;
 
     // Start is called before the first frame update
     void Start()
     {
-        aSource = GetComponent<AudioSource>();
-        aSource.clip = menuSong;
-        aSource.Play();
+        //sfxSource = GetComponent<AudioSource>();
+        musicSource.clip = menuSong;
+        musicSource.volume = 1f;
+        musicSource.Play();
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         an = GetComponent<Animator>();
@@ -157,8 +163,11 @@ public class PlayerGood : MonoBehaviour
             an.SetTrigger("GoToIdle");
             an.SetBool("Running",true);
             if (!playingsong){
-            aSource.clip = gameSong;
-            aSource.Play();
+                MainMenu.SetActive(false);
+                healthBarOnOff.SetActive(true);
+                musicSource.clip = gameSong;
+                musicSource.volume = .2f;
+                musicSource.Play();
                 playingsong = true;
             }
         }
@@ -224,7 +233,7 @@ public class PlayerGood : MonoBehaviour
 
     IEnumerator SwordAttacks(AudioClip swordSound){    
         yield return new WaitForSeconds(.7f);
-        aSource.PlayOneShot(swordSound,1);
+        sfxSource.PlayOneShot(swordSound,1);
         GameObject[] validEnemies;
 
          Collider[] enemies = Physics.OverlapSphere(
@@ -281,7 +290,7 @@ public class PlayerGood : MonoBehaviour
 
     // }
     void ShootWeapon(){
-        aSource.PlayOneShot(fireball,1);
+        sfxSource.PlayOneShot(fireball,1);
         var rX = Random.Range(-spreadFactor, spreadFactor);
         var rY = Random.Range(-spreadFactor, spreadFactor);
         var rZ = Random.Range(-spreadFactor, spreadFactor);
@@ -297,7 +306,7 @@ public class PlayerGood : MonoBehaviour
 
     public void TakeDamage(float damage){
         if(health > 0.01){
-            aSource.PlayOneShot(takedamage,1);
+            sfxSource.PlayOneShot(takedamage,1);
             health -= damage;
             hperc = health/ maxHealth + 0.05f;
 
@@ -316,11 +325,13 @@ public class PlayerGood : MonoBehaviour
 
     void OnDeath(){
         an.SetTrigger("Die");
-        aSource.PlayOneShot(die,1);
-        aSource.clip = menuSong;
-        aSource.Play();
+        sfxSource.PlayOneShot(die,1);
+        musicSource.clip = curbyour;
+        musicSource.volume = 1f;
+        musicSource.Play();
         dead = true;
-        print("You Died!");
+        deathScreen.SetActive(true);
+        healthBarOnOff.SetActive(false);
     }
 
     public void WeaponUpgrade(int _upgrade){

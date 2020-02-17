@@ -9,13 +9,16 @@ public class EnemyHealth : MonoBehaviour {
     private float totalHealth; 
     public float health =10;
     private float hperc; 
-  
+    AudioSource asource;
+    public AudioClip takeDamage;
+
     // public GameHandler gameHandler;
     GameObject gameHandler;
     public int points = 5;
     public float diffFactor = 0.01f;
 
 	void Awake(){
+        asource = GetComponent<AudioSource>();
         totalHealth = health;
         gameHandler = GameObject.FindGameObjectWithTag("GameHandler");
     }
@@ -25,6 +28,7 @@ public class EnemyHealth : MonoBehaviour {
     {
         if(health > 0.1){
             health -= damage;
+            asource.PlayOneShot(takeDamage,1);
             if(health<=0){
                 OnDeath(points);
                 Destroy(gameObject);
