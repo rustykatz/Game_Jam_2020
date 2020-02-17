@@ -6,6 +6,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour {
 
     private float dmg; 
+    public AudioSource asrc;
+    public AudioClip hot;
 
     void Awake(){
         GameObject player = GameObject.FindGameObjectWithTag("Player");

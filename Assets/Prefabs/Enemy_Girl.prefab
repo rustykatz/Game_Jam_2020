@@ -402,8 +402,8 @@ GameObject:
   - component: {fileID: 2347249168242629427}
   - component: {fileID: 7343592395448479795}
   - component: {fileID: 7343592395448479799}
-  - component: {fileID: 7343592395448479796}
   - component: {fileID: 7343592395448479797}
+  - component: {fileID: 7343592395448479796}
   - component: {fileID: 7343592395448479794}
   m_Layer: 0
   m_Name: Enemy_Girl
@@ -464,6 +464,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7343592395448479797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641636239469193504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fda131c8eb9f7448b95795c63fe69391, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: {fileID: 0}
+  health: 10
+  takeDamage: {fileID: 0}
+  points: 5
+  diffFactor: 0.01
 --- !u!114 &7343592395448479796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,22 +499,6 @@ MonoBehaviour:
   maxDistance: 0
   eSpeed: 2
   dmg: 1
---- !u!114 &7343592395448479797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1641636239469193504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda131c8eb9f7448b95795c63fe69391, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 8799055565589369596}
-  health: 10
-  points: 5
-  diffFactor: 0.01
 --- !u!195 &7343592395448479794
 NavMeshAgent:
   m_ObjectHideFlags: 0
