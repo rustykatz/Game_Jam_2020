@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2649921615510504772
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2649921615510504774}
+  - component: {fileID: 2649921615510504773}
+  m_Layer: 0
+  m_Name: GameHandler
+  m_TagString: GameHandler
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2649921615510504774
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2649921615510504772}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 78.878235, y: 31.748344, z: 45.17124}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2649921615510504773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2649921615510504772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63ffec636d3be4036b647b26a3638921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Score: 0
+  gameRunning: 0
+  diffTimerRun: 0
+  diffTimer: 0
+  difficulty: 1
+  scoreText: {fileID: 0}
+  difficultyText: {fileID: 0}
+  server1: {fileID: 0}
+  server2: {fileID: 0}
+  s1: 
+  s2: 
+  msg: 
+  score: 0
+  c1:
+  - {fileID: 2880285835573536467, guid: 2076336a555373b489256597f4482b40, type: 3}
+  - {fileID: 2880285835573536467, guid: 2076336a555373b489256597f4482b40, type: 3}
+  - {fileID: 2880285835573536467, guid: 2076336a555373b489256597f4482b40, type: 3}
+  - {fileID: 2880285835573536467, guid: 2076336a555373b489256597f4482b40, type: 3}
+  - {fileID: 2880285835573536467, guid: 2076336a555373b489256597f4482b40, type: 3}
+  - {fileID: 8265470951438695273, guid: af6f1524269190840acad524859da12e, type: 3}
+  c2:
+  - {fileID: 6235280598655384927, guid: 0cc454aa50974b94e9f7e3a04fe89e0f, type: 3}
+  - {fileID: 6235280598655384927, guid: 0cc454aa50974b94e9f7e3a04fe89e0f, type: 3}
+  - {fileID: 6235280598655384927, guid: 0cc454aa50974b94e9f7e3a04fe89e0f, type: 3}
+  - {fileID: 6235280598655384927, guid: 0cc454aa50974b94e9f7e3a04fe89e0f, type: 3}
+  - {fileID: 6235280598655384927, guid: 0cc454aa50974b94e9f7e3a04fe89e0f, type: 3}
+  - {fileID: 8265470951438695273, guid: af6f1524269190840acad524859da12e, type: 3}
+  c3:
+  - {fileID: 184894854918537834, guid: a10d9b964bd65384c8148ab0db5d490e, type: 3}
+  - {fileID: 184894854918537834, guid: a10d9b964bd65384c8148ab0db5d490e, type: 3}
+  - {fileID: 184894854918537834, guid: a10d9b964bd65384c8148ab0db5d490e, type: 3}
+  - {fileID: 184894854918537834, guid: a10d9b964bd65384c8148ab0db5d490e, type: 3}
+  - {fileID: 184894854918537834, guid: a10d9b964bd65384c8148ab0db5d490e, type: 3}
+  - {fileID: 8265470951438695273, guid: af6f1524269190840acad524859da12e, type: 3}
+  c4:
+  - {fileID: 8256269927755999815, guid: 25989cb087468f24bbb409b831d589a5, type: 3}
+  - {fileID: 8256269927755999815, guid: 25989cb087468f24bbb409b831d589a5, type: 3}
+  - {fileID: 8256269927755999815, guid: 25989cb087468f24bbb409b831d589a5, type: 3}
+  - {fileID: 8256269927755999815, guid: 25989cb087468f24bbb409b831d589a5, type: 3}
+  - {fileID: 8256269927755999815, guid: 25989cb087468f24bbb409b831d589a5, type: 3}
+  - {fileID: 8265470951438695273, guid: af6f1524269190840acad524859da12e, type: 3}
+  loc:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  CoolSwords: []
+  sword1: {fileID: 0}
+  sword2: {fileID: 0}
+  sword3: {fileID: 0}
+  sword4: {fileID: 0}

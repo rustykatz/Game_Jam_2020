@@ -259,19 +259,19 @@ public class GameHandler : MonoBehaviour
             print("Difficulty set -> "+ difficulty.ToString());
            
         }
-        if(cc==1){
+        else if(cc==1){
             // Select Weapon
             //swords[cidx].SetActive(true);
             if(cidx==0){
-                sword1.SetActive(true);
+                sword1.SetActive(true); 
             }
-            if(cidx==1){
+            else if(cidx==1){
                 sword2.SetActive(true);
             }
-            if(cidx ==2){
+            else if(cidx ==2){
                 sword3.SetActive(true);
             }
-            if(cidx ==3){
+            else{
                 sword4.SetActive(true);
             }
 
@@ -279,41 +279,41 @@ public class GameHandler : MonoBehaviour
             print(cidx);
 
         }
-        if(cc==2){
+        else if(cc==2){
             // Select Enemies
             for(int i=0; i<= numSpawn; i++){
                 Instantiate(toSpawn, loc[cidx].transform.position, Quaternion.identity);
                 print("SPAWNING "+ choice.ToString() + "#: "+ i.ToString());
             }
         }
-        if(cc==3){
+        else if(cc==3){
             // Select Enemies
             for(int i=0; i<= numSpawn; i++){
                 Instantiate(toSpawn, loc[cidx].transform.position, Quaternion.identity);
                 print("SPAWNING "+ choice.ToString() + "#: "+ i.ToString());
             }
         }
-        if(cc==4){
+        else if(cc==4){
             
             // Select Weapon
             if(cidx==0){
                 weaponOff();
                 sword1.SetActive(true);
             }
-            if(cidx==1){
+           else if(cidx==1){
                 weaponOff();
                 sword2.SetActive(true);
             }
-            if(cidx ==2){
+            else if(cidx ==2){
                 weaponOff();
                 sword3.SetActive(true);
             }
-            if(cidx ==3){
+            else if(cidx ==3){
                 weaponOff();
                 sword4.SetActive(true);
             }
         }
-        if(cc==5){
+        else if(cc==5){
             // Select Enemies
             for(int i=0; i<= numSpawn; i++){
                 Instantiate(toSpawn, loc[cidx].transform.position, Quaternion.identity);
@@ -321,7 +321,7 @@ public class GameHandler : MonoBehaviour
             }
         }
         // Anththing beyond level 6 will onlt spawn bosses 
-        if(cc>=6){
+        else if(cc>=6){
             // Select Boss
             Instantiate(toSpawn, loc[cidx].transform.position, Quaternion.identity);
 
